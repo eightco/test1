@@ -67,12 +67,20 @@ A<sup>i,j</sup>
 
 
 <ins>just in github?</ins>
+---------
+The merge of the array of 3channel mat gives the wrong result on a particular input.
+--------------
 
 
+When an array of mat entering as input type If each Mat is not a single channel, but array of three or four Mat's of the three channels is input, the '''ipp_merge()''' branch will result in an incorrect merge.
+```ipp_merge ()``` seems to have been implemented assuming that the ```Mat``` channels are all 1 channel.
+Therefore, we must move the ```ipp_merge()``` call below the ```if (! Allch1)``` branch to work properly.
 
-When an array of mat entering as input type If each Mat is not a single channel, but array of three or four Mat's of the three channels is input, the ipp_merge branch will result in an incorrect merge.
+This function is implemented assuming that all mat channels are all 1 channel.
 
-As an argument to the ipp_merge function, "n" is entered in channels. This function is implemented assuming that all mat channels are all 1 channel.
+ '''ipp_merge()''' is probably implemented assuming that all the ```Mat``` channels are all 1 channel.
+ 
+
 Therefore, we must move the ipp_merge function call below the "if (! Allch1)" branch to work properly.
 
 
